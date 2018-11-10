@@ -1,0 +1,29 @@
+{
+    "name": "dividotlab/botman-slack-extension",
+    "description": "A PHP BotMan Slack Driver extension",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sylvain Lorinet",
+            "email": "sylvain.lorinet@gmail.com"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "7.2.0"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "require": {
+        "botman/driver-slack": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "DiviDotLab\\": "src/"
+        }
+    }
+}
