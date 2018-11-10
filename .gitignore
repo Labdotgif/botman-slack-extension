@@ -1,1 +1,5 @@
 vendor/
+reports/
+
+ubuntu-*.log
+.php_cs.cache
