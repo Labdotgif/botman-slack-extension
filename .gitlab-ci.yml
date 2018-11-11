@@ -51,5 +51,5 @@ test:phpunit:
     <<: *task_template
     stage: test
     script:
-        - php bin/phpunit
-        - php -dzend_extension=xdebug.so bin/phpunit --coverage-text --colors=never
+        - php vendor/bin/phpunit
+        - php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-text --colors=never
