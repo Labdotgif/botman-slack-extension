@@ -19,11 +19,19 @@
         "sort-packages": true
     },
     "require": {
-        "botman/driver-slack": "^2.1"
+        "ext-json": "*",
+        "botman/driver-slack": "^2.1",
+        "psr/log": "^1.0.2",
+        "symfony/event-dispatcher": "^4.1",
+        "symfony/serializer": "^4.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^7.4",
+        "symfony/dependency-injection": "^4.1"
+    },
+    "suggest": {
+        "symfony/dependency-injection": "If you want to use this library as a bundle"
     },
     "autoload": {
         "psr-4": {
@@ -32,7 +40,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Dividotlab\\": "tests/"
+            "Dividotlab\\Tests\\": "tests/"
         }
     },
     "scripts": {

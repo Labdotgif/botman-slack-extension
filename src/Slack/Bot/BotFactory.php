@@ -12,7 +12,7 @@ use BotMan\Drivers\Slack\SlackDriver;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class SlackBotFactory
+class BotFactory
 {
     public static function create(string $botOAuthToken): BotMan
     {

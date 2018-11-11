@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot;
+namespace Dividotlab\Tests\Slack\Bot;
 
 use BotMan\BotMan\BotMan;
+use Dividotlab\Slack\Bot\BotFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class SlackBotFactoryTest extends TestCase
+class BotFactoryTest extends TestCase
 {
     /**
      * @test
      */
     public function create(): void
     {
-        $this->assertInstanceOf(BotMan::class, SlackBotFactory::create('foo'));
+        $this->assertInstanceOf(BotMan::class, BotFactory::create('foo'));
     }
 }

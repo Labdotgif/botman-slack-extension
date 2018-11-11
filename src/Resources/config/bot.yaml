@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        public: false
+
+    'Dividotlab\Slack\Bot\BotFactory': ~
+    'Dividotlab\Slack\Bot\BotEventHandler':
+        arguments:
+            - '@serializer'
