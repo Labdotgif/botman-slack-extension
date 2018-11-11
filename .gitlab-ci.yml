@@ -27,14 +27,12 @@ build:dependencies:
     artifacts:
         paths:
             - vendor/
-            - config/parameters.yaml
         expire_in: 60 minutes
     cache:
         key: composer-cache
         paths:
             - .composercache/
     script:
-        - cp config/parameters.yaml.dist config/parameters.yaml
         - composer config cache-files-dir .composercache
         - php -d memory_limit=-1 $(which composer) install -n -o --prefer-dist --no-progress --no-scripts --no-suggest
 
