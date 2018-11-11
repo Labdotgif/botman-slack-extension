@@ -1,0 +1,57 @@
+# Main docs :
+# http://docs.gitlab.com/ce/ci/yaml/README.html
+
+stages:
+    - build
+    - check
+    - test
+
+variables:
+    TIMEZONE: "Europe/Paris"
+
+build:docker:
+    stage: build
+    image: docker:latest
+    services:
+        - docker:dind
+    before_script:
+        - apk add --no-cache bash
+    script:
+        - chmod +x resources/docker/registry.sh
+        - resources/docker/registry.sh
+    when: manual
+
+build:dependencies:
+    stage: build
+    image: registry.gitlab.com/dividotgif/botman-slack-extension:latest
+    artifacts:
+        paths:
+            - vendor/
+            - config/parameters.yaml
+        expire_in: 60 minutes
+    cache:
+        key: composer-cache
+        paths:
+            - .composercache/
+    script:
+        - cp config/parameters.yaml.dist config/parameters.yaml
+        - composer config cache-files-dir .composercache
+        - php -d memory_limit=-1 $(which composer) install -n -o --prefer-dist --no-progress --no-scripts --no-suggest
+
+.task_template: &task_template
+    image: registry.gitlab.com/dividotgif/botman-slack-extension:latest
+    dependencies:
+        - 'build:dependencies'
+
+check:phpcs:
+    <<: *task_template
+    stage: check
+    script:
+        - php vendor/bin/php-cs-fixer fix --diff -vvv --dry-run --using-cache=no
+
+test:phpunit:
+    <<: *task_template
+    stage: test
+    script:
+        - php bin/phpunit
+        - php -dzend_extension=xdebug.so bin/phpunit --coverage-text --colors=never
