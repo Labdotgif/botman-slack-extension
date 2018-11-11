@@ -23,7 +23,7 @@ class VerificationUrlNormalizer implements DenormalizerInterface
         $this->slackVerificationToken = $slackVerificationToken;
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         return new VerificationUrlSlackEvent(
             $this->slackVerificationToken,
