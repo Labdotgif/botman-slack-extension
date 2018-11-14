@@ -7,9 +7,9 @@ namespace Dividotlab\DependencyInjection;
 use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlNormalizer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
@@ -39,7 +39,7 @@ class SlackBotExtension extends Extension implements PrependExtensionInterface
         $loader->load('normalizers.yaml');
 
         $container->getDefinition(VerificationUrlNormalizer::class)
-            ->setArgument(0, $configs[0]['slack.verification_url.token']);
+            ->setArgument('$slackVerificationToken', $configs[0]['slack.verification_url.token']);
     }
 
     public function prepend(ContainerBuilder $container)

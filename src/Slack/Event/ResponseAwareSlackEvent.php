@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-abstract class ResponseAwareSlackEvent implements SlackEventInterface
+abstract class ResponseAwareSlackEvent extends SlackEvent
 {
     /**
      * @var null|Response

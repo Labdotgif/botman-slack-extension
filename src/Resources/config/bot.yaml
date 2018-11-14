@@ -3,6 +3,10 @@ services:
         public: false
 
     'Dividotlab\Slack\Bot\BotFactory': ~
-    'Dividotlab\Slack\Bot\BotEventHandler':
+    'Dividotlab\Slack\Event\SlackEventHandler':
         arguments:
             - '@serializer'
+            - '@event_dispatcher'
+        calls:
+            - method: setLogger
+              arguments: ['@?logger']
