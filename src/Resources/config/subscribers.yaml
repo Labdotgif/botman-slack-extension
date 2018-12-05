@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        public: false
+
+    'Dividotlab\Slack\Event\Subscriber\':
+        resource: '../../Slack/Event/Subscriber/*.php'
+        tags: ['kernel.event_subscriber']

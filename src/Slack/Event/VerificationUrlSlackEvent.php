@@ -9,7 +9,7 @@ namespace Dividotlab\Slack\Event;
  */
 class VerificationUrlSlackEvent extends ResponseAwareSlackEvent
 {
-    const EVENT_NAME = 'slack.verification_url';
+    public const EVENT_NAME = 'slack.verification_url';
 
     /**
      * @var string

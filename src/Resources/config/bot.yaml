@@ -3,6 +3,9 @@ services:
         public: false
 
     'Dividotlab\Slack\Bot\BotFactory': ~
+    'Dividotlab\Slack\Bot\BotMan':
+        factory: 'Dividotlab\Slack\Bot\BotFactory:create'
+
     'Dividotlab\Slack\Event\SlackEventHandler':
         arguments:
             - '@serializer'
