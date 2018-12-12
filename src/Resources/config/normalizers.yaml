@@ -2,6 +2,11 @@ services:
     _defaults:
         public: false
 
-    'Dividotlab\Slack\Serializer\Normalizer\VerificationUrlNormalizer':
+    'Dividotlab\Slack\Serializer\Normalizer\':
+        resource: '../../Slack/Serializer/Normalizer/*.php'
         tags:
-            - { name: 'serializer.normalizer', priority: 255 }
+            - { name: 'serializer.normalizer', priority: 200 }
+
+    'Dividotlab\Slack\Serializer\Normalizer\EventNormalizer':
+        tags:
+            - { name: 'serializer.normalizer', priority: 150 }
