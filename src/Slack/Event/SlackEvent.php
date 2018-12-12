@@ -11,5 +11,4 @@ use Symfony\Component\EventDispatcher\Event;
  */
 abstract class SlackEvent extends Event implements SlackEventInterface
 {
-
 }

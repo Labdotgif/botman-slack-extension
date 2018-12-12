@@ -59,5 +59,4 @@ class BotFactory
 
         return new BotMan($cache, $driver, $config, $storageDriver);
     }
-
 }
