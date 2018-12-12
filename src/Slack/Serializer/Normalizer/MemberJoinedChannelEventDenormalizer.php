@@ -10,7 +10,7 @@ use Dividotlab\Slack\Event\SlackEvents;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class MemberJoinedChannelEventNormalizer extends EventNormalizer
+class MemberJoinedChannelEventDenormalizer extends EventDenormalizer
 {
     public function denormalize($data, $class, $format = null, array $context = [])
     {

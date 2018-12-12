@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dividotlab\DependencyInjection;
 
 use Dividotlab\Slack\Bot\BotFactory;
-use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlNormalizer;
+use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -43,7 +43,7 @@ class SlackBotExtension extends Extension implements PrependExtensionInterface
         $container->getDefinition(BotFactory::class)
             ->setArgument('$botOauthToken', $configs[0]['slack.bot.oauth.token']);
 
-        $container->getDefinition(VerificationUrlNormalizer::class)
+        $container->getDefinition(VerificationUrlDenormalizer::class)
             ->setArgument('$slackVerificationToken', $configs[0]['slack.verification_url.token']);
     }
 

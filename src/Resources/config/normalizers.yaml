@@ -7,6 +7,6 @@ services:
         tags:
             - { name: 'serializer.normalizer', priority: 200 }
 
-    'Dividotlab\Slack\Serializer\Normalizer\EventNormalizer':
+    'Dividotlab\Slack\Serializer\Normalizer\EventDenormalizer':
         tags:
             - { name: 'serializer.normalizer', priority: 150 }

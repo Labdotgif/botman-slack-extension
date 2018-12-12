@@ -6,13 +6,13 @@ namespace Dividotlab\Tests\Slack\Serializer\Normalizer;
 
 use Dividotlab\Slack\Event\SlackEventInterface;
 use Dividotlab\Slack\Event\VerificationUrlSlackEvent;
-use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlNormalizer;
+use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  *
- * @covers \Dividotlab\Slack\Serializer\Normalizer\VerificationUrlNormalizer
+ * @covers \Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer
  */
 class VerificationUrlNormalizerTest extends TestCase
 {
@@ -22,7 +22,7 @@ class VerificationUrlNormalizerTest extends TestCase
      */
     public function supportsDenormalization(bool $expectedReturn, array $data, string $type, string $format): void
     {
-        $normalizer = new VerificationUrlNormalizer('foo');
+        $normalizer = new VerificationUrlDenormalizer('foo');
 
         $this->assertEquals($expectedReturn, $normalizer->supportsDenormalization($data, $type, $format));
     }
@@ -81,7 +81,7 @@ class VerificationUrlNormalizerTest extends TestCase
      */
     public function denormalize(): void
     {
-        $normalizer = new VerificationUrlNormalizer('foo');
+        $normalizer = new VerificationUrlDenormalizer('foo');
         $event = $normalizer->denormalize(json_decode('{
             "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
             "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
