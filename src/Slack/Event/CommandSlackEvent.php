@@ -14,7 +14,7 @@ class CommandSlackEvent extends SlackEvent
     /**
      * @var string
      */
-    protected $channelId;
+    protected $fromChannelId;
 
     /**
      * @var string
@@ -37,17 +37,37 @@ class CommandSlackEvent extends SlackEvent
     protected $responseUrl;
 
     public function __construct(
-        string $channelId,
+        string $fromChannelId,
         string $userId,
         string $commandName,
         string $text,
         string $responseUrl
     ) {
-        $this->channelId   = $channelId;
-        $this->userId      = $userId;
-        $this->commandName = $commandName;
-        $this->text        = $text;
-        $this->responseUrl = $responseUrl;
+        $this->fromChannelId = $fromChannelId;
+        $this->userId        = $userId;
+        $this->commandName   = substr($commandName, 1); // Removing first slash
+        $this->text          = $text;
+        $this->responseUrl   = $responseUrl;
+    }
+
+    public function getFromChannelId(): string
+    {
+        return $this->fromChannelId;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    public function getCommandName(): string
+    {
+        return $this->commandName;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
     }
 
     public function getEventName(): string

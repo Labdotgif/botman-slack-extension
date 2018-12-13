@@ -12,14 +12,26 @@ use Dividotlab\Slack\Bot\Conversation\Input\SelectOption;
  */
 abstract class Dialog extends BaseDialog
 {
-    public function setCallbackId(string $callbackId): self
+    /**
+     * @var string
+     */
+    private $state;
+
+    protected function setState(string $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    protected function setCallbackId(string $callbackId): self
     {
         $this->callbackId = $callbackId;
 
         return $this;
     }
 
-    public function setTitle(string $title): self
+    protected function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -44,5 +56,18 @@ abstract class Dialog extends BaseDialog
         $this->add($label, $name, 'select', array_merge($additional, [
             'options' => $optionsAsArray
         ]));
+    }
+
+    public function toArray()
+    {
+        $payload = parent::toArray();
+
+        if (isset($this->state)) {
+            $payload = array_merge($payload, [
+                'state' => $this->state
+            ]);
+        }
+
+        return $payload;
     }
 }
