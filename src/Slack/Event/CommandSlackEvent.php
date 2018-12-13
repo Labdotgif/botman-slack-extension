@@ -45,7 +45,7 @@ class CommandSlackEvent extends SlackEvent
     ) {
         $this->fromChannelId = $fromChannelId;
         $this->userId        = $userId;
-        $this->commandName   = substr($commandName, 1); // Removing first slash
+        $this->commandName   = mb_substr($commandName, 1); // Removing first slash
         $this->text          = $text;
         $this->responseUrl   = $responseUrl;
     }

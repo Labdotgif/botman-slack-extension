@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  */
 class DialogSubmissionDenormalizer implements DenormalizerInterface
 {
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         return new DialogSubmissionSlackEvent(
             $data['channel']['id'],

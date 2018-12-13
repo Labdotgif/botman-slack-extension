@@ -41,7 +41,7 @@ class SlackEventHandler implements LoggerAwareInterface
     {
         try {
             /** @var SlackEventInterface $event */
-            $event = $this->serializer->deserialize($content,  SlackEventInterface::class, 'json');
+            $event = $this->serializer->deserialize($content, SlackEventInterface::class, 'json');
         } catch (NotNormalizableValueException $e) {
             $this->logger->debug('Cannot deserialize content', [
                 'content' => $content

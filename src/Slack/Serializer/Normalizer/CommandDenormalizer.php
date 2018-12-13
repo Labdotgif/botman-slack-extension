@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  */
 class CommandDenormalizer implements DenormalizerInterface
 {
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         return new CommandSlackEvent(
             $data['channel_id'],
