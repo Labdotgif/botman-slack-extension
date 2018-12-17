@@ -9,7 +9,7 @@ namespace Dividotlab\Slack\Event;
  */
 class CommandSlackEvent extends SlackEvent
 {
-    const EVENT_NAME = 'slack.command';
+    public const EVENT_NAME = 'slack.command';
 
     /**
      * @var string

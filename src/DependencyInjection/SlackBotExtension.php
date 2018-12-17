@@ -25,11 +25,17 @@ class SlackBotExtension extends Extension implements PrependExtensionInterface
     /**
      * @var string
      */
+    private $botOauthToken;
+
+    /**
+     * @var string
+     */
     private $verificationUrlToken;
 
-    public function __construct(string $oauthToken, string $verificationUrlToken)
+    public function __construct(string $oauthToken, string $botOauthToken, string $verificationUrlToken)
     {
         $this->oauthToken           = $oauthToken;
+        $this->botOauthToken        = $botOauthToken;
         $this->verificationUrlToken = $verificationUrlToken;
     }
 
@@ -41,6 +47,7 @@ class SlackBotExtension extends Extension implements PrependExtensionInterface
         $loader->load('subscribers.yaml');
 
         $container->getDefinition(BotFactory::class)
+            ->setArgument('$oauthToken', $configs[0]['slack.oauth.token'])
             ->setArgument('$botOauthToken', $configs[0]['slack.bot.oauth.token']);
 
         $container->getDefinition(VerificationUrlDenormalizer::class)
@@ -51,7 +58,8 @@ class SlackBotExtension extends Extension implements PrependExtensionInterface
     {
         // FIXME Should be in a configuration node, but it's time saving
         $container->prependExtensionConfig('slack_bot', [
-            'slack.bot.oauth.token'        => $this->oauthToken,
+            'slack.oauth.token'            => $this->oauthToken,
+            'slack.bot.oauth.token'        => $this->botOauthToken,
             'slack.verification_url.token' => $this->verificationUrlToken,
         ]);
     }

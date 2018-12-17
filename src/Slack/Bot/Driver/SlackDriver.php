@@ -45,7 +45,10 @@ class SlackDriver extends BaseSlackDriver
     protected function respondJSONWithToken($message, IncomingMessage $matchingMessage, $parameters = []): array
     {
         $payload = parent::respondJSON($message, $matchingMessage, $parameters);
-        $payload['token'] = $this->config->get('token');
+
+        if (static::RESULT_EPHEMERAL === $this->resultType) {
+            $payload['token'] = $this->config->get('oauth.token');
+        }
 
         return $payload;
     }

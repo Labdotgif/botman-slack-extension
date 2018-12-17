@@ -21,10 +21,16 @@ class BotFactory
     /**
      * @var string
      */
+    private $oauthToken;
+
+    /**
+     * @var string
+     */
     private $botOauthToken;
 
-    public function __construct(string $botOauthToken)
+    public function __construct(string $oauthToken, string $botOauthToken)
     {
+        $this->oauthToken    = $oauthToken;
         $this->botOauthToken = $botOauthToken;
     }
 
@@ -36,7 +42,8 @@ class BotFactory
     ) {
         $config = array_merge_recursive($config, [
             'slack' => [
-                'token' => $this->botOauthToken
+                'token'       => $this->botOauthToken,
+                'oauth.token' => $this->oauthToken
             ]
         ]);
 

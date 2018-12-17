@@ -19,7 +19,7 @@ class CommandDenormalizer implements DenormalizerInterface
             $data['channel_id'],
             $data['user_id'],
             $data['command'],
-            $data['text'],
+            trim($data['text']),
             $data['response_url']
         );
     }
