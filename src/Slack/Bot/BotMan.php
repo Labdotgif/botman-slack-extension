@@ -7,6 +7,7 @@ namespace Dividotlab\Slack\Bot;
 use BotMan\BotMan\BotMan as BaseBotMan;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Interfaces\DriverInterface;
+use BotMan\BotMan\Interfaces\UserInterface;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\Drivers\Slack\Extensions\Dialog;
 use BotMan\Drivers\Slack\SlackDriver;
@@ -52,5 +53,10 @@ class BotMan extends BaseBotMan
         $driver = $this->getDriver();
 
         return $driver->replyDialog($dialog, $additionalParameters, new IncomingMessage('', $userId, ''), $this);
+    }
+
+    public function findUserById(string $userId): UserInterface
+    {
+        return $this->getDriver()->getUser(new IncomingMessage('', $userId, ''));
     }
 }
