@@ -52,7 +52,7 @@ class Button extends BaseButton
             static::STYLE_DEFAULT, static::STYLE_DANGER, static::STYLE_SUCCESS
         ];
 
-        if (!in_array($style, $styles, true)) {
+        if (!\in_array($style, $styles, true)) {
             throw new \InvalidArgumentException(
                 'Invalid button style "' . $style . '", available : "' . implode('", "', $styles) . '"'
             );
