@@ -12,6 +12,10 @@ use Dividotlab\Slack\Bot\Conversation\Input\SelectOption;
  */
 abstract class Dialog extends BaseDialog
 {
+    public const TYPE_TEXT     = 'text';
+    public const TYPE_TEXTAREA = 'textarea';
+    public const TYPE_CHOICE   = 'select';
+
     /**
      * @var string
      */
@@ -58,8 +62,18 @@ abstract class Dialog extends BaseDialog
         ]));
     }
 
+    public function add(string $label, string $name, string $type, array $additional = [])
+    {
+        parent::add($label, $name, $type, $additional);
+
+        return $this;
+    }
+
     public function toArray()
     {
+        $this->setCallbackId($this->getCallbackId());
+        $this->setTitle($this->getTitle());
+
         $payload = parent::toArray();
 
         if (isset($this->state)) {
@@ -70,4 +84,8 @@ abstract class Dialog extends BaseDialog
 
         return $payload;
     }
+
+    abstract protected function getCallbackId(): string;
+
+    abstract protected function getTitle(): string;
 }

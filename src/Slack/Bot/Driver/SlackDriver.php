@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dividotlab\Slack\Bot\Driver;
 
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
+use BotMan\Drivers\Slack\Extensions\User;
 use BotMan\Drivers\Slack\SlackDriver as BaseSlackDriver;
 
 /**
@@ -51,5 +52,22 @@ class SlackDriver extends BaseSlackDriver
         }
 
         return $payload;
+    }
+
+    public function getUser(IncomingMessage $matchingMessage)
+    {
+        $response = $this->sendRequest('users.info', [
+            'user'           => $matchingMessage->getSender(),
+            'include_locale' => 1
+        ], $matchingMessage);
+        try {
+            $content = json_decode($response->getContent(), true);
+
+            return new User(null, $content['user']);
+        } catch (\Exception $e) {
+            return new User(null, [
+                'id' => $matchingMessage->getSender()
+            ]);
+        }
     }
 }
