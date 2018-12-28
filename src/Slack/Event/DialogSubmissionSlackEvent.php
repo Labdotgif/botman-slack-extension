@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Dividotlab\Slack\Event;
 
-class DialogSubmissionSlackEvent extends SlackEvent
+class DialogSubmissionSlackEvent extends ResponseAwareSlackEvent
 {
     public const EVENT_NAME = 'slack.dialog_submission';
 
     /**
      * @var string
      */
-    private $fromChanneId;
+    private $fromChannelId;
 
     /**
      * @var string
@@ -39,24 +39,24 @@ class DialogSubmissionSlackEvent extends SlackEvent
     private $responseUrl;
 
     public function __construct(
-        string $fromChanneId,
+        string $fromChannelId,
         string $userId,
         array $submission,
         string $state,
         string $callbackId,
         string $responseUrl
     ) {
-        $this->fromChanneId = $fromChanneId;
-        $this->userId       = $userId;
-        $this->submission   = $submission;
-        $this->state        = $state;
-        $this->callbackId   = $callbackId;
-        $this->responseUrl  = $responseUrl;
+        $this->fromChannelId = $fromChannelId;
+        $this->userId        = $userId;
+        $this->submission    = $submission;
+        $this->state         = $state;
+        $this->callbackId    = $callbackId;
+        $this->responseUrl   = $responseUrl;
     }
 
     public function getFromChannelId(): string
     {
-        return $this->fromChanneId;
+        return $this->fromChannelId;
     }
 
     public function getUserId(): string

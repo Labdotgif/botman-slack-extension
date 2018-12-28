@@ -13,3 +13,8 @@ services:
         calls:
             - method: setLogger
               arguments: ['@?logger']
+
+    'Dividotlab\Slack\Bot\Conversation\Validation\DialogValidator':
+        arguments:
+            - '@serializer.name_converter.camel_case_to_snake_case'
+            - '@validator'

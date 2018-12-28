@@ -6,6 +6,8 @@ namespace Dividotlab\Slack\Bot\Conversation;
 
 use BotMan\Drivers\Slack\Extensions\Dialog as BaseDialog;
 use Dividotlab\Slack\Bot\Conversation\Input\SelectOption;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
@@ -20,6 +22,16 @@ abstract class Dialog extends BaseDialog
      * @var string
      */
     private $state;
+
+    /**
+     * @var array
+     */
+    private $errors = [];
+
+    /**
+     * @var array
+     */
+    private $data;
 
     protected function setState(string $state): self
     {
@@ -83,6 +95,107 @@ abstract class Dialog extends BaseDialog
         }
 
         return $payload;
+    }
+
+    public function handleSubmission(array $submission): void
+    {
+        if (empty($this->elements)) {
+            $this->buildForm();
+        }
+
+        $this->data = [];
+
+        foreach ($this->elements as $element) {
+            if (!isset($submission[$element['name']])) {
+                $this->data[$element['name']] = null;
+
+                continue;
+            }
+
+            $this->data[$element['name']] = $submission[$element['name']];
+        }
+    }
+
+    public function getData(): array
+    {
+        if (!isset($this->data)) {
+            throw new \LogicException('You should call Dialog::handleSubmission(array $submission) first');
+        }
+
+        return $this->data;
+    }
+
+    public function addErrors(string $inputName, ConstraintViolationListInterface $errors): self
+    {
+        $this->errors[$inputName] = $errors;
+
+        return $this;
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    public function getErrorsAsArray(): array
+    {
+        $errors = [];
+
+        foreach ($this->getErrors() as $inputName => $inputErrors) {
+            /** @var ConstraintViolation $inputError */
+            foreach ($inputErrors as $inputError) {
+                $errors[] = [
+                    'name'  => $inputName,
+                    'error' => $inputError->getMessage()
+                ];
+            }
+        }
+
+        return [
+            'errors' => $errors
+        ];
+    }
+
+    public function getValidators(): array
+    {
+        if (empty($this->elements)) {
+            $this->buildForm();
+        }
+
+        $validators = [];
+
+        foreach ($this->elements as $element) {
+            if (\in_array($element['type'], [
+                self::TYPE_TEXT,
+                self::TYPE_TEXTAREA
+            ], true)) {
+                $nativeValidators = ['max_length', 'min_length', 'subtype'];
+
+                foreach ($nativeValidators as $validator) {
+                    if (isset($element[$validator])) {
+                        $validators[$element['name']][$validator] = $element[$validator];
+                    }
+                }
+            }
+
+            if (!isset($element['optional']) || false === $element['optional']) {
+                $validators[$element['name']]['required'] = true;
+            }
+
+            if (self::TYPE_CHOICE === $element['type']) {
+                $validators[$element['name']]['choice'] = array_column($element['options'], 'value');
+            }
+
+            if (isset($element['validators'])) {
+                if (isset($validators[$element['name']])) {
+                    $validators[$element['name']] = array_merge($validators[$element['name']], $element['validators']);
+                } else {
+                    $validators[$element['name']] = $element['validators'];
+                }
+            }
+        }
+
+        return $validators;
     }
 
     abstract protected function getCallbackId(): string;
