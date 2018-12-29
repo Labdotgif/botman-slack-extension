@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dividotlab\Slack\Bot\Conversation\Attachment;
 
+use BotMan\BotMan\Interfaces\QuestionActionInterface;
 use BotMan\BotMan\Interfaces\WebAccess;
 
 /**
@@ -96,9 +97,27 @@ class Text implements WebAccess
         return $this->setParameter('ts', $date->getTimestamp());
     }
 
+    public function setCallbackId(string $callbackId): self
+    {
+        return $this->setParameter('callback_id', $callbackId);
+    }
+
+    public function addAction(QuestionActionInterface $action): self
+    {
+        if (!isset($this->parameters['actions'])) {
+            $this->setParameter('actions', []);
+        }
+
+        $this->parameters['actions'] = array_merge($this->parameters['actions'], [
+            $action->toArray()
+        ]);
+
+        return $this;
+    }
+
     /**
-     * @param string     $name
-     * @param string|int $value
+     * @param string           $name
+     * @param string|int|array $value
      *
      * @return Text
      */
