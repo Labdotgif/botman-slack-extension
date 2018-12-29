@@ -18,6 +18,11 @@ abstract class Dialog extends BaseDialog
     public const TYPE_TEXTAREA = 'textarea';
     public const TYPE_CHOICE   = 'select';
 
+    public const SUB_TYPE_EMAIL        = 'email';
+    public const SUB_TYPE_URL          = 'url';
+    public const SUB_TYPE_PHONE_NUMBER = 'tel';
+    public const SUB_TYPE_NUMBER       = 'number';
+
     /**
      * @var string
      */
