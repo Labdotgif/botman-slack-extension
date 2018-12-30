@@ -16,9 +16,32 @@ class MessageRenderer
      */
     private $attachments = [];
 
+    /**
+     * @var array
+     */
+    private $parameters = [];
+
     public static function create(): self
     {
         return new static;
+    }
+
+    public function setText(string $text): self
+    {
+        return $this->setParameter('text', $text);
+    }
+
+    /**
+     * @param string           $name
+     * @param string|int|array $value
+     *
+     * @return self
+     */
+    protected function setParameter(string $name, $value): self
+    {
+        $this->parameters[$name] = $value;
+
+        return $this;
     }
 
     public function addAttachment(WebAccess ...$attachments): self
@@ -30,7 +53,6 @@ class MessageRenderer
 
     public function render(bool $toJson = true): array
     {
-        $parameters = [];
         $attachments = [];
 
         /** @var WebAccess[]|array $attachment */
@@ -44,12 +66,12 @@ class MessageRenderer
 
         if (!empty($attachments)) {
             if ($toJson) {
-                $parameters['attachments'] = json_encode($attachments);
+                $this->parameters['attachments'] = json_encode($attachments);
             } else {
-                $parameters['attachments'] = $attachments;
+                $this->parameters['attachments'] = $attachments;
             }
         }
 
-        return $parameters;
+        return $this->parameters;
     }
 }

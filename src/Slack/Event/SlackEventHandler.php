@@ -51,7 +51,7 @@ class SlackEventHandler implements LoggerAwareInterface
         }
 
         $this->logger->debug(sprintf('Dispatching Slack event "%s"', $event->getEventName()), [
-            'payload' => $content
+            'payload' => json_decode($content, true)
         ]);
 
         $this->eventDispatcher->dispatch($event->getEventName(), $event);

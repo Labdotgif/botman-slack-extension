@@ -7,9 +7,9 @@ namespace Dividotlab\Slack\Event;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class SelectChoiceSlackEvent extends SlackEvent
+class ButtonActionSlackEvent extends SlackEvent
 {
-    public const EVENT_NAME = 'slack.select_choice';
+    public const EVENT_NAME = 'slack.button_action';
 
     /**
      * @var string
@@ -37,14 +37,24 @@ class SelectChoiceSlackEvent extends SlackEvent
     private $userId;
 
     /**
-     * @var array|null
+     * @var int
      */
-    private $originalMessage;
+    private $attachmentId;
+
+    /**
+     * @var float
+     */
+    private $messageTimestamp;
 
     /**
      * @var string
      */
     private $responseUrl;
+
+    /**
+     * @var array|null
+     */
+    private $originalMessage;
 
     public function __construct(
         string $name,
@@ -52,16 +62,20 @@ class SelectChoiceSlackEvent extends SlackEvent
         string $callbackId,
         string $channelId,
         string $userId,
+        int $attachmentId,
+        float $messageTimestamp,
         string $responseUrl,
         array $originalMessage = null
     ) {
-        $this->name            = $name;
-        $this->value           = $value;
-        $this->callbackId      = $callbackId;
-        $this->channelId       = $channelId;
-        $this->userId          = $userId;
-        $this->originalMessage = $originalMessage;
-        $this->responseUrl     = $responseUrl;
+        $this->name             = $name;
+        $this->value            = $value;
+        $this->callbackId       = $callbackId;
+        $this->channelId        = $channelId;
+        $this->userId           = $userId;
+        $this->attachmentId     = $attachmentId;
+        $this->messageTimestamp = $messageTimestamp;
+        $this->responseUrl      = $responseUrl;
+        $this->originalMessage  = $originalMessage;
     }
 
     public function getName(): string
@@ -89,14 +103,24 @@ class SelectChoiceSlackEvent extends SlackEvent
         return $this->userId;
     }
 
-    public function getOriginalMessage(): ?array
+    public function getAttachmentId(): int
     {
-        return $this->originalMessage;
+        return $this->attachmentId;
+    }
+
+    public function getMessageTimestamp(): float
+    {
+        return $this->messageTimestamp;
     }
 
     public function getResponseUrl(): string
     {
         return $this->responseUrl;
+    }
+
+    public function getOriginalMessage(): ?array
+    {
+        return $this->originalMessage;
     }
 
     public function getEventName(): string
