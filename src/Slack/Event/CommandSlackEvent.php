@@ -7,7 +7,7 @@ namespace Dividotlab\Slack\Event;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class CommandSlackEvent extends SlackEvent
+class CommandSlackEvent extends SlackEvent implements AuthenticatedSlackEventInterface
 {
     public const EVENT_NAME = 'slack.command';
 

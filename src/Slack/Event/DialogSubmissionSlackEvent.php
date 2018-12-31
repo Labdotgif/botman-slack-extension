@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dividotlab\Slack\Event;
 
-class DialogSubmissionSlackEvent extends ResponseAwareSlackEvent
+class DialogSubmissionSlackEvent extends ResponseAwareSlackEvent implements AuthenticatedSlackEventInterface
 {
     public const EVENT_NAME = 'slack.dialog_submission';
 

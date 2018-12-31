@@ -7,7 +7,7 @@ namespace Dividotlab\Slack\Event;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class EventSlackEvent extends SlackEvent
+class EventSlackEvent extends SlackEvent implements AuthenticatedSlackEventInterface
 {
     public const EVENT_NAME = 'slack.event_callback';
 

@@ -7,7 +7,7 @@ namespace Dividotlab\Slack\Event;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class SelectChoiceSlackEvent extends SlackEvent
+class SelectChoiceSlackEvent extends SlackEvent implements AuthenticatedSlackEventInterface
 {
     public const EVENT_NAME = 'slack.select_choice';
 

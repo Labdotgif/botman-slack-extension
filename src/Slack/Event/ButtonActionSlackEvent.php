@@ -7,7 +7,7 @@ namespace Dividotlab\Slack\Event;
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  */
-class ButtonActionSlackEvent extends SlackEvent
+class ButtonActionSlackEvent extends SlackEvent implements AuthenticatedSlackEventInterface
 {
     public const EVENT_NAME = 'slack.button_action';
 
