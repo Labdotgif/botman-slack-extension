@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot;
+namespace Labdotgif\Slack\Bot;
 
 use BotMan\BotMan\BotMan as BaseBotMan;
 use BotMan\BotMan\Drivers\DriverManager;

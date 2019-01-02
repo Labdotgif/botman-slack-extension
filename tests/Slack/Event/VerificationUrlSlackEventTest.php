@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Tests\Slack\Event;
+namespace Labdotgif\Tests\Slack\Event;
 
-use Dividotlab\Slack\Event\SlackEventInterface;
-use Dividotlab\Slack\Event\VerificationUrlSlackEvent;
+use Labdotgif\Slack\Event\SlackEventInterface;
+use Labdotgif\Slack\Event\VerificationUrlSlackEvent;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>

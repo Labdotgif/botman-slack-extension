@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Serializer\Normalizer;
+namespace Labdotgif\Slack\Serializer\Normalizer;
 
-use Dividotlab\Slack\Event\SelectChoiceSlackEvent;
-use Dividotlab\Slack\Event\SlackEventInterface;
+use Labdotgif\Slack\Event\SelectChoiceSlackEvent;
+use Labdotgif\Slack\Event\SlackEventInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 /**

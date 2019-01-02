@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Conversation\Validation;
+namespace Labdotgif\Slack\Bot\Conversation\Validation;
 
-use Dividotlab\Slack\Bot\Conversation\Dialog;
+use Labdotgif\Slack\Bot\Conversation\Dialog;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Choice;

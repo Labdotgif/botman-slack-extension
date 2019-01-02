@@ -2,11 +2,11 @@ services:
     _defaults:
         public: false
 
-    'Dividotlab\Slack\Serializer\Normalizer\':
+    'Labdotgif\Slack\Serializer\Normalizer\':
         resource: '../../Slack/Serializer/Normalizer/*.php'
         tags:
             - { name: 'serializer.normalizer', priority: 200 }
 
-    'Dividotlab\Slack\Serializer\Normalizer\EventDenormalizer':
+    'Labdotgif\Slack\Serializer\Normalizer\EventDenormalizer':
         tags:
             - { name: 'serializer.normalizer', priority: 150 }

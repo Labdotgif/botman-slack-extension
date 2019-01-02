@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Conversation;
+namespace Labdotgif\Slack\Bot\Conversation;
 
 use BotMan\BotMan\Interfaces\WebAccess;
 

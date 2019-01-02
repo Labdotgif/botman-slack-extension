@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Event;
+namespace Labdotgif\Slack\Event;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;

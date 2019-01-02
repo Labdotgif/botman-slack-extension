@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot;
+namespace Labdotgif\Slack\Bot;
 
 use BotMan\BotMan\Cache\ArrayCache;
 use BotMan\BotMan\Drivers\DriverManager;
@@ -10,7 +10,7 @@ use BotMan\BotMan\Http\Curl;
 use BotMan\BotMan\Interfaces\CacheInterface;
 use BotMan\BotMan\Interfaces\StorageInterface;
 use BotMan\BotMan\Storages\Drivers\FileStorage;
-use Dividotlab\Slack\Bot\Driver\SlackDriver;
+use Labdotgif\Slack\Bot\Driver\SlackDriver;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

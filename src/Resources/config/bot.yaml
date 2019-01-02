@@ -2,11 +2,11 @@ services:
     _defaults:
         public: false
 
-    'Dividotlab\Slack\Bot\BotFactory': ~
-    'Dividotlab\Slack\Bot\BotMan':
-        factory: 'Dividotlab\Slack\Bot\BotFactory:create'
+    'Labdotgif\Slack\Bot\BotFactory': ~
+    'Labdotgif\Slack\Bot\BotMan':
+        factory: 'Labdotgif\Slack\Bot\BotFactory:create'
 
-    'Dividotlab\Slack\Event\SlackEventHandler':
+    'Labdotgif\Slack\Event\SlackEventHandler':
         arguments:
             - '@serializer'
             - '@event_dispatcher'
@@ -14,7 +14,7 @@ services:
             - method: setLogger
               arguments: ['@?logger']
 
-    'Dividotlab\Slack\Bot\Conversation\Validation\DialogValidator':
+    'Labdotgif\Slack\Bot\Conversation\Validation\DialogValidator':
         arguments:
             - '@serializer.name_converter.camel_case_to_snake_case'
             - '@validator'

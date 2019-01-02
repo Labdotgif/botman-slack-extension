@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Conversation\Attachment;
+namespace Labdotgif\Slack\Bot\Conversation\Attachment;
 
 use BotMan\BotMan\Messages\Outgoing\Actions\Button as BaseButton;
 

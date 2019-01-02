@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Tests\Slack\Event;
+namespace Labdotgif\Tests\Slack\Event;
 
-use Dividotlab\Slack\Event\SlackEventInterface;
+use Labdotgif\Slack\Event\SlackEventInterface;
 use PHPUnit\Framework\TestCase;
 
 /**

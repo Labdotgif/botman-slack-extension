@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\DependencyInjection;
+namespace Labdotgif\DependencyInjection;
 
-use Dividotlab\Slack\Bot\BotFactory;
-use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
+use Labdotgif\Slack\Bot\BotFactory;
+use Labdotgif\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;

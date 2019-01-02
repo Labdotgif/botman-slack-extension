@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Tests\Slack\Event;
+namespace Labdotgif\Tests\Slack\Event;
 
-use Dividotlab\Slack\Event\ResponseAwareSlackEvent;
+use Labdotgif\Slack\Event\ResponseAwareSlackEvent;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 

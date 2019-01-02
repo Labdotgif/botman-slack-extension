@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Serializer\Normalizer;
+namespace Labdotgif\Slack\Serializer\Normalizer;
 
-use Dividotlab\Slack\Event\MemberJoinedChannelEventSlackEvent;
-use Dividotlab\Slack\Event\SlackEvents;
+use Labdotgif\Slack\Event\MemberJoinedChannelEventSlackEvent;
+use Labdotgif\Slack\Event\SlackEvents;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>

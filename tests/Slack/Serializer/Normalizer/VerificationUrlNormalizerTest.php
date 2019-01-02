@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Tests\Slack\Serializer\Normalizer;
+namespace Labdotgif\Tests\Slack\Serializer\Normalizer;
 
-use Dividotlab\Slack\Event\SlackEventInterface;
-use Dividotlab\Slack\Event\VerificationUrlSlackEvent;
-use Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
+use Labdotgif\Slack\Event\SlackEventInterface;
+use Labdotgif\Slack\Event\VerificationUrlSlackEvent;
+use Labdotgif\Slack\Serializer\Normalizer\VerificationUrlDenormalizer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
  *
- * @covers \Dividotlab\Slack\Serializer\Normalizer\VerificationUrlDenormalizer
+ * @covers \Labdotgif\Slack\Serializer\Normalizer\VerificationUrlDenormalizer
  */
 class VerificationUrlNormalizerTest extends TestCase
 {

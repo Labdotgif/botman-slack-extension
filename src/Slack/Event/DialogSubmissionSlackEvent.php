@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Event;
+namespace Labdotgif\Slack\Event;
 
 class DialogSubmissionSlackEvent extends ResponseAwareSlackEvent implements AuthenticatedSlackEventInterface
 {

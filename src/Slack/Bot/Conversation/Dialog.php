@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Conversation;
+namespace Labdotgif\Slack\Bot\Conversation;
 
 use BotMan\Drivers\Slack\Extensions\Dialog as BaseDialog;
-use Dividotlab\Slack\Bot\Conversation\Input\SelectOption;
+use Labdotgif\Slack\Bot\Conversation\Input\SelectOption;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 

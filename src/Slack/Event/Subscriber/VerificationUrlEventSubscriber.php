@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Event\Subscriber;
+namespace Labdotgif\Slack\Event\Subscriber;
 
-use Dividotlab\Slack\Event\VerificationUrlSlackEvent;
+use Labdotgif\Slack\Event\VerificationUrlSlackEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

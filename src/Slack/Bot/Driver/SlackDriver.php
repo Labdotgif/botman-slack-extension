@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Driver;
+namespace Labdotgif\Slack\Bot\Driver;
 
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\Drivers\Slack\Extensions\User;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dividotlab\Slack\Bot\Conversation\Input;
+namespace Labdotgif\Slack\Bot\Conversation\Input;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>

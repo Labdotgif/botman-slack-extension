@@ -1,5 +1,5 @@
 {
-    "name": "dividotlab/botman-slack-extension",
+    "name": "labdotgif/botman-slack-extension",
     "description": "A PHP BotMan Slack Driver extension",
     "type": "library",
     "license": "MIT",
@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Dividotlab\\": "src/"
+            "Labdotgif\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dividotlab\\Tests\\": "tests/"
+            "Labdotgif\\Tests\\": "tests/"
         }
     },
     "scripts": {
