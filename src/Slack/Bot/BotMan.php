@@ -10,7 +10,8 @@ use BotMan\BotMan\Interfaces\DriverInterface;
 use BotMan\BotMan\Interfaces\UserInterface;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 use BotMan\Drivers\Slack\Extensions\Dialog;
-use BotMan\Drivers\Slack\SlackDriver;
+use Labdotgif\Slack\Bot\Conversation\MessageRenderer;
+use Labdotgif\Slack\Bot\Driver\SlackDriver;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
@@ -53,6 +54,39 @@ class BotMan extends BaseBotMan
         $driver = $this->getDriver();
 
         return $driver->replyDialog($dialog, $additionalParameters, new IncomingMessage('', $userId, ''), $this);
+    }
+
+    public function respond(string $responseUrl, string $message, MessageRenderer $renderer = null, $driver = null)
+    {
+        if ($driver instanceof DriverInterface) {
+            $this->setDriver($driver);
+        } elseif (\is_string($driver)) {
+            $this->setDriver(DriverManager::loadFromName($driver, $this->config));
+        }
+
+        if (!$this->getDriver() instanceof SlackDriver) {
+            throw new \InvalidArgumentException('Dialog is only implemented with Slack HTTP driver');
+        }
+
+        /** @var SlackDriver $driver */
+        $driver = $this->getDriver();
+
+        return $driver->post($responseUrl, $renderer->setText($message)->render(false));
+    }
+
+    public function respondInChannel(
+        string $responseUrl,
+        string $message,
+        MessageRenderer $renderer = null,
+        $driver = null
+    ) {
+        if (null === $renderer) {
+            $renderer = MessageRenderer::create();
+        }
+
+        $renderer->setResponseType(MessageRenderer::RESPONSE_TYPE_IN_CHANNEL);
+
+        return $this->respond($responseUrl, $message, $renderer, $driver);
     }
 
     public function findUserById(string $userId): UserInterface

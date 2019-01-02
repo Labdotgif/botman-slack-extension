@@ -70,6 +70,11 @@ class CommandSlackEvent extends SlackEvent implements AuthenticatedSlackEventInt
         return $this->text;
     }
 
+    public function getResponseUrl(): string
+    {
+        return $this->responseUrl;
+    }
+
     public function getEventName(): string
     {
         return static::EVENT_NAME;

@@ -43,6 +43,16 @@ class SlackDriver extends BaseSlackDriver
         return parent::sendPayload($payload);
     }
 
+    public function post(
+        string $url,
+        array $payload,
+        array $urlParameters = [],
+        array $headers = [],
+        $asJSON = true
+    ) {
+        return $this->http->post($url, $urlParameters, $payload, $headers, $asJSON);
+    }
+
     protected function respondJSONWithToken($message, IncomingMessage $matchingMessage, $parameters = []): array
     {
         $payload = parent::respondJSON($message, $matchingMessage, $parameters);

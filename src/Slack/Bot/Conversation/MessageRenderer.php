@@ -11,6 +11,8 @@ use BotMan\BotMan\Interfaces\WebAccess;
  */
 class MessageRenderer
 {
+    const RESPONSE_TYPE_IN_CHANNEL = 'in_channel';
+
     /**
      * @var array|WebAccess[]
      */
@@ -29,6 +31,11 @@ class MessageRenderer
     public function setText(string $text): self
     {
         return $this->setParameter('text', $text);
+    }
+
+    public function setResponseType(string $responseType): self
+    {
+        return $this->setParameter('response_type', $responseType);
     }
 
     /**
