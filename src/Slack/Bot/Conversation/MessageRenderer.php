@@ -12,6 +12,7 @@ use BotMan\BotMan\Interfaces\WebAccess;
 class MessageRenderer
 {
     const RESPONSE_TYPE_IN_CHANNEL = 'in_channel';
+    const RESPONSE_TYPE_EPHEMERAL  = 'ephemeral';
 
     /**
      * @var array|WebAccess[]

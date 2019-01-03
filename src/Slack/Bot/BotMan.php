@@ -89,6 +89,21 @@ class BotMan extends BaseBotMan
         return $this->respond($responseUrl, $message, $renderer, $driver);
     }
 
+    public function respondEphemeral(
+        string $responseUrl,
+        string $message,
+        MessageRenderer $renderer = null,
+        $driver = null
+    ) {
+        if (null === $renderer) {
+            $renderer = MessageRenderer::create();
+        }
+
+        $renderer->setResponseType(MessageRenderer::RESPONSE_TYPE_EPHEMERAL);
+
+        return $this->respond($responseUrl, $message, $renderer, $driver);
+    }
+
     public function findUserById(string $userId): UserInterface
     {
         return $this->getDriver()->getUser(new IncomingMessage('', $userId, ''));
