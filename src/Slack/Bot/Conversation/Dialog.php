@@ -63,20 +63,40 @@ abstract class Dialog extends BaseDialog
     {
         $optionsAsArray = [];
 
-        foreach ($options as $option) {
-            if ($option instanceof SelectOption) {
-                $optionsAsArray[] = [
-                    'label' => $option->getLabel(),
-                    'value' => $option->getValue()
-                ];
-            } else {
-                $optionsAsArray[] = $option;
-            }
-        }
+        if (isset($additional['option_groups'])) {
+            foreach ($additional['option_groups'] as $group) {
+                $currentOptionsAsArray = [];
 
-        $this->add($label, $name, 'select', array_merge($additional, [
-            'options' => $optionsAsArray
-        ]));
+                foreach ($group['options'] as $option) {
+                    if ($option instanceof SelectOption) {
+                        $currentOptionsAsArray[] = $option->toArray();
+                    } else {
+                        $currentOptionsAsArray[] = $option;
+                    }
+                }
+
+                $optionsAsArray[] = [
+                    'label'   => $group['label'],
+                    'options' => $currentOptionsAsArray
+                ];
+            }
+
+            $this->add($label, $name, 'select', array_merge($additional, [
+                'option_groups' => $optionsAsArray
+            ]));
+        } else {
+            foreach ($options as $option) {
+                if ($option instanceof SelectOption) {
+                    $optionsAsArray[] = $option->toArray();
+                } else {
+                    $optionsAsArray[] = $option;
+                }
+            }
+
+            $this->add($label, $name, 'select', array_merge($additional, [
+                'options' => $optionsAsArray
+            ]));
+        }
     }
 
     public function add(string $label, string $name, string $type, array $additional = [])
@@ -188,7 +208,19 @@ abstract class Dialog extends BaseDialog
             }
 
             if (self::TYPE_CHOICE === $element['type']) {
-                $validators[$element['name']]['choice'] = array_column($element['options'], 'value');
+                if (isset($element['options'])) {
+                     $options = array_column($element['options'], 'value');
+                } else {
+                    $options = [];
+
+                    foreach ($element['option_groups'] as $group) {
+                        foreach ($group['options'] as $option) {
+                            $options[] = $option['value'];
+                        }
+                    }
+                }
+
+                $validators[$element['name']]['choice'] = $options;
             }
 
             if (isset($element['validators'])) {

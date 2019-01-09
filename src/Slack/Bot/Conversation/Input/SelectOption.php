@@ -34,4 +34,12 @@ class SelectOption
     {
         return $this->value;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'label' => $this->label,
+            'value' => $this->value
+        ];
+    }
 }
