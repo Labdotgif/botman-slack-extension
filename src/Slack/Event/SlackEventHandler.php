@@ -54,7 +54,7 @@ class SlackEventHandler implements LoggerAwareInterface
             'payload' => json_decode($content, true)
         ]);
 
-        $this->eventDispatcher->dispatch($event->getEventName(), $event);
+        $this->eventDispatcher->dispatch($event, $event->getEventName());
 
         if ($event instanceof ResponseAwareSlackEvent) {
             return $event->getResponse();

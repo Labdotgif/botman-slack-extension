@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Labdotgif\Slack\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * @author Sylvain Lorinet <sylvain.lorinet@gmail.com>
