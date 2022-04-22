@@ -20,12 +20,11 @@
     },
     "require": {
         "ext-json": "*",
-        "botman/driver-slack": "^2.1",
         "psr/log": "^1.0",
-        "symfony/config": "^4.1",
-        "symfony/event-dispatcher": "^4.1",
-        "symfony/serializer": "^4.1",
-        "symfony/validator": "^4.2"
+        "symfony/config": "^4.1|^5.0",
+        "symfony/event-dispatcher": "^4.1|^5.0",
+        "symfony/serializer": "^4.1|^5.0",
+        "symfony/validator": "^4.2|^5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
@@ -33,6 +32,7 @@
         "symfony/dependency-injection": "^4.1"
     },
     "suggest": {
+        "botman/driver-slack": "If you want to send Slack message from PHP",
         "symfony/dependency-injection": "If you want to use this library as a bundle"
     },
     "autoload": {
