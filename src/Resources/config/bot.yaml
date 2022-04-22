@@ -4,7 +4,7 @@ services:
 
     'Labdotgif\Slack\Bot\BotFactory': ~
     'Labdotgif\Slack\Bot\BotMan':
-        factory: 'Labdotgif\Slack\Bot\BotFactory:create'
+        factory: [ '@Labdotgif\Slack\Bot\BotFactory', 'create' ]
 
     'Labdotgif\Slack\Event\SlackEventHandler':
         arguments:
