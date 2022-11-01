@@ -13,7 +13,7 @@ use BotMan\Drivers\Slack\SlackDriver as BaseSlackDriver;
  */
 class SlackDriver extends BaseSlackDriver
 {
-    private const RESULT_EPHEMERAL = 'ephemeral';
+    protected const RESULT_EPHEMERAL = 'ephemeral';
 
     public function buildServicePayload($message, $matchingMessage, $additionalParameters = [])
     {
