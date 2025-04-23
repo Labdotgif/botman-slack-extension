@@ -53,7 +53,7 @@ class SelectChoiceSlackEvent extends SlackEvent implements AuthenticatedSlackEve
         string $channelId,
         string $userId,
         string $responseUrl,
-        array $originalMessage = null
+        ?array $originalMessage = null
     ) {
         $this->name            = $name;
         $this->value           = $value;

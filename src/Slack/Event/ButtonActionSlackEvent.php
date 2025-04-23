@@ -65,7 +65,7 @@ class ButtonActionSlackEvent extends SlackEvent implements AuthenticatedSlackEve
         int $attachmentId,
         float $messageTimestamp,
         string $responseUrl,
-        array $originalMessage = null
+        ?array $originalMessage = null
     ) {
         $this->name             = $name;
         $this->value            = $value;

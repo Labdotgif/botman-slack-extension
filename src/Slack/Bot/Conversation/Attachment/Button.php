@@ -32,7 +32,7 @@ class Button extends BaseButton
 
     public function setConfirmation(
         string $title,
-        string $text = null,
+        ?string $text = null,
         string $confirmationButtonText = 'Confirmer',
         string $dismissButtonText = 'Annuler'
     ): self {

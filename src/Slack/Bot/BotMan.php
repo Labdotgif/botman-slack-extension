@@ -22,7 +22,7 @@ class BotMan extends BaseBotMan
         string $message,
         string $userId,
         string $channelId,
-        string $driver = null,
+        ?string $driver = null,
         array $additionalParameters = []
     ) {
         $additionalParameters = array_merge_recursive($additionalParameters, [
@@ -56,7 +56,7 @@ class BotMan extends BaseBotMan
         return $driver->replyDialog($dialog, $additionalParameters, new IncomingMessage('', $userId, ''), $this);
     }
 
-    public function respond(string $responseUrl, string $message, MessageRenderer $renderer = null, $driver = null)
+    public function respond(string $responseUrl, string $message, ?MessageRenderer $renderer = null, $driver = null)
     {
         if ($driver instanceof DriverInterface) {
             $this->setDriver($driver);
@@ -77,7 +77,7 @@ class BotMan extends BaseBotMan
     public function respondInChannel(
         string $responseUrl,
         string $message,
-        MessageRenderer $renderer = null,
+        ?MessageRenderer $renderer = null,
         $driver = null
     ) {
         if (null === $renderer) {
@@ -92,7 +92,7 @@ class BotMan extends BaseBotMan
     public function respondEphemeral(
         string $responseUrl,
         string $message,
-        MessageRenderer $renderer = null,
+        ?MessageRenderer $renderer = null,
         $driver = null
     ) {
         if (null === $renderer) {

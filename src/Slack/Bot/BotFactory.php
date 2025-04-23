@@ -36,9 +36,9 @@ class BotFactory
 
     public function create(
         array $config = [],
-        CacheInterface $cache = null,
-        Request $request = null,
-        StorageInterface $storageDriver = null
+        ?CacheInterface $cache = null,
+        ?Request $request = null,
+        ?StorageInterface $storageDriver = null
     ) {
         $config = array_merge_recursive($config, [
             'slack' => [
